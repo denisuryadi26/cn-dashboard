@@ -1,26 +1,32 @@
 <?php
-class M_peserta extends CI_Model{
+class M_peserta extends CI_Model
+{
 
-    public function __construct() {
-            parent::__construct();
-    }
+  public function __construct()
+  {
+    parent::__construct();
+  }
 
-  function get_peserta(){
+  function get_peserta()
+  {
     $result = $this->db->get('peserta')->result();
     return $result;
   }
 
-  function get_peserta_by_id($id){
+  function get_peserta_by_id($id)
+  {
     $result = $this->db->get_where('peserta', array('id' => $id))->result();
     return $result;
   }
 
-  function get_total_peserta(){
+  function get_total_peserta()
+  {
     $result = $this->db->get('peserta')->num_rows();
     return $result;
   }
 
-  function add_peserta($data){
+  function add_peserta($data)
+  {
     // $data = array(
     //   'nama_lengkap' => $nama_lengkap,
     //   'nik' => $nik,
@@ -37,17 +43,24 @@ class M_peserta extends CI_Model{
     // );
     // var_dump($data);die;
     // $this->db->insert('peserta',$data);
-    try{
-        // var_dump($data);die;
-        $this->db->insert('peserta', $data);
-        return true;
-      }catch(Exception $e){
-      }
+    try {
+      // var_dump($data);die;
+      $this->db->insert('peserta', $data);
+      return true;
+    } catch (Exception $e) {
+    }
   }
 
-  function delete($id){
+  function get_peserta_id($peserta_id)
+  {
+    $result = $this->db->get_where('peserta', array('id' => $peserta_id));
+    // var_dump($result);die;
+    return $result;
+  }
+
+  function delete($id)
+  {
     $this->db->where('id', $id);
     $this->db->delete('peserta');
-   }
-
+  }
 }
